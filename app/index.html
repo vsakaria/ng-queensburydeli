@@ -1,19 +1,32 @@
 <!doctype html>
-<html lang="en" ng-app="myApp">
+<!-- myApp is the bootstrapped root element of the app -->
+<html lang="en" ng-app="queensDeli">
 <head>
   <meta charset="utf-8">
   <title>My AngularJS App</title>
   <link rel="stylesheet" href="css/app.css"/>
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
+
+
+  Search: <input ng-model="search">
+
+  <ul ng-controller='foodMenu'>
+    <li ng-repeat='food in foods | filter:search'>
+      {{ $index + 1 + " " + food.name}}
+    </li>
   </ul>
 
-  <div ng-view></div>
+  <ul ng-controller='drinksMenu'>
+    <li ng-repeat='drink in drinks | filter:search'>
+      {{ $index + 1 + " " + drink.name}}
+    </li>
+  </ul>
 
-  <div>Angular seed app: v<span app-version></span></div>
+  <!--Do not understand ng-view -->
+  <div ng-view></div>
+  <!--Do not understand ng-version is created -->
+  <div>Angular seed app: version <span app-version></span></div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
